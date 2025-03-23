@@ -13,6 +13,8 @@ tags:
 
 ## 基础概念
 
+{% asset_img one-way-data-flow.png "数据流图" %}
+
 GUI 开发，通常有3个角色：
 
 state: 描述数据状态

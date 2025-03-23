@@ -101,4 +101,8 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/xechoz/xechoz.github.io
+  branch: master  # or 'gh-pages' depending on your setup
+  message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
+

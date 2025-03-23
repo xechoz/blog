@@ -16,7 +16,10 @@ tags:
 我举例，
 
 ```txt
-我需要更改 `<a><b>foo</b><a>`,  foo 为 bar，保存到 `<a><b>bar</b><a>`, 但是 xml 总是自动转义, 得到一个 转义后的结果，`<a>&lt;b&gt;bar&lt;b&gt;</a>`
+我需要更改 `<a><b>foo</b><a>`,  foo 为 bar，
+保存到 `<a><b>bar</b><a>`, 
+但是 xml 总是自动转义, 得到一个 转义后的结果，
+`<a>&lt;b&gt;bar&lt;b&gt;</a>`
 ```
 
 grok 的方案一直不对。他没理解我的问题。一直提示 用CDATA，即使我说 CDATA 不是我要的答案，因为这个导致多了 <!CDATA>.

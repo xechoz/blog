@@ -10,6 +10,42 @@ tags:
 
 参考 [一种极低成本的Android屏幕适配方式](https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA?mode=light)
 
+## 单个 Activity 适配
+
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(newBase.createCustomDensityContext())
+    }
+}
+```
+
+## 全局适配
+
+``` kotlin
+class MainActivity : ComponentActivity() {
+    override fun attachBaseContext(newBase: Context) {
+        newBase.setCustomDensity()
+        super.attachBaseContext(newBase)
+    }
+}
+
+class MainApplication: Application() {
+    override fun attachBaseContext(base: Context) {
+        base.setCustomDensity()
+        super.attachBaseContext(base)
+    }
+}
+```
+
+## 只适配 这个 View 及其 子 view
+
+```kotlin
+class FooView @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null
+) : FrameLayout(context.createCustomDensityContext(), attrs)
+```
+
 ## 实现代码
 
 ```kotlin

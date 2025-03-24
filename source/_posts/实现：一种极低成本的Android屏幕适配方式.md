@@ -57,6 +57,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.util.AttributeSet
 import android.util.DisplayMetrics
+import android.view.ContextThemeWrapper
 import android.widget.FrameLayout
 
 /**
@@ -77,16 +78,35 @@ import android.widget.FrameLayout
  * 参考：
  * [一种极低成本的Android屏幕适配方式](https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA?mode=light)
  */
-class CustomDensityLayout @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null
-) : FrameLayout(context.createCustomDensityContext(uiWidthDp), attrs) {
-    companion object {
-        var uiWidthDp = 360 // 设计稿屏幕 宽度 的dp，默认 360 dp
-    }
+
+
+/**
+ * 适用  全局适配的 场景
+ * 适配 整个 Resources， Activity resources 是共享的，改了一个会全部改掉。
+ *
+ * // 有些代码使用的 application 获取 resource, 这个也要适配
+ * class MainApplication: Application() {
+ *     override fun attachBaseContext(base: Context) {
+ *         base.setCustomDensity()
+ *         super.attachBaseContext(base)
+ *     }
+ * }
+ *
+ * // 全部 Activity 都适配。 或者在 BaseActivity
+ * class MainActivity : ComponentActivity() {
+ *     override fun attachBaseContext(newBase: Context) {
+ *         newBase.setCustomDensity()
+ *         super.attachBaseContext(newBase)
+ *     }
+ * }
+ */
+fun Context.setCustomDensity(uiWidthDp: Int = 360) {
+    resources.displayMetrics.setCustomDensity(newCustomDensity(uiWidthDp))
 }
 
 /**
- * 创建一个 新的 context 适配 Density
+ * 创建一个 新的 context 适配 Density.
+ *
  * [uiWidthDp] 设计稿屏幕 宽度 的dp，默认 360 dp
  *
  * usage:
@@ -107,6 +127,9 @@ class CustomDensityLayout @JvmOverloads constructor(
  * }
  *
  * // 只适配 这个 View 及其 子 view
+ * // 谨慎使用，createCustomDensityContext 返回的 context 不是 Activity，
+ * // 如果 子view 有地方拿 context 当做 Activity 使用就会有问题
+ *
  * class FooView @JvmOverloads constructor(
  *     context: Context, attrs: AttributeSet? = null
  * ) : FrameLayout(context.createCustomDensityContext(), attrs)
@@ -127,7 +150,22 @@ fun Context.createCustomDensityContext(uiWidthDp: Int = 360): Context {
     copyMetrics.setCustomDensity(custom)
 
     copyContext.resources.displayMetrics.setTo(copyMetrics)
-    return copyContext
+    return if (this is ContextThemeWrapper) ContextThemeWrapper(copyContext, theme) else copyContext
+}
+
+/**
+ *  *
+ *  * // 只适配 这个 View 及其 子 view
+ *  * // 谨慎使用，createCustomDensityContext 返回的 context 不是 Activity，
+ *  * // 如果 子view 有地方拿 context 当做 Activity 使用就会有问题
+ *  *
+ */
+class CustomDensityLayout @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null
+) : FrameLayout(context.createCustomDensityContext(uiWidthDp), attrs) {
+    companion object {
+        var uiWidthDp = 360 // 设计稿屏幕 宽度 的dp，默认 360 dp
+    }
 }
 
 /// private ////
@@ -165,30 +203,6 @@ private fun updateNonCompatDensity(application: Application) {
             }
         })
     }
-}
-
-/**
- * 适用  全局适配的 场景
- * 适配 整个 Resources， Activity resources 是共享的，改了一个会全部改掉。
- *
- * // 有些代码使用的 application 获取 resource, 这个也要适配
- * class MainApplication: Application() {
- *     override fun attachBaseContext(base: Context) {
- *         base.setCustomDensity()
- *         super.attachBaseContext(base)
- *     }
- * }
- *
- * // 全部 Activity 都适配。 或者在 BaseActivity
- * class MainActivity : ComponentActivity() {
- *     override fun attachBaseContext(newBase: Context) {
- *         newBase.setCustomDensity()
- *         super.attachBaseContext(newBase)
- *     }
- * }
- */
-fun Context.setCustomDensity(uiWidthDp: Int = 360) {
-    resources.displayMetrics.setCustomDensity(newCustomDensity(uiWidthDp))
 }
 
 private fun DisplayMetrics.setCustomDensity(custom: CustomDensity) {

@@ -60,3 +60,16 @@ YY 的团队规模，其实是比唯品会更大，但却是一个原始的状�
 我上周看 hilt 的 module，context 这个的定位有些像 Hilt 的 module，但是我不熟悉 hilt，没法深入对比。
 
 我还不知道业界怎么称呼这个。可能看完 Clean Architecture 后我会找到答案。
+
+## 2025-3-31
+
+读了 clean architecture 的1/3。相对 redux，mvvm，clean 是更抽象的 pattern，例如 可以在 redux 里使用 clean 的分层，DIP，用于局部优化。
+
+clean 更接近是 设计思想，redux 是编码实现。看 clean architecture 这本书就发现，clean 是从很多简单实用的 pattern 发展而来，而这些 patter，例如 SOLID, 
+是 coding 中的基础，在 redux，mvxx 也大量使用。clean 对这些基础 pattern 做了 更高的抽象，使其更贴近实际的开发流程，但是又不至于像 redux，mvvm 那么具体。
+
+clean 很注重 依赖规则，DIP 是其很核心的一个 pattern。理解 依赖，DIP 是理解 clean 的关键。但是我想，这也是 clean 难以理解，被人诟病的地方。
+过于注重抽象层级，抽象依赖，DIP，导致 曾经非常多。Redux，MVVM 可能 3-4 个层级，到了 clean，核心层级都分 interface，DIP 两部分，层级翻倍。导致常常觉得 是 过度设计。
+
+过度设计 是个需要时间才能证伪的命题。因为是否过度，这个跟时间相关，今天的过度设计，到了明天，变更来了，刚好用上这个过度设计。
+

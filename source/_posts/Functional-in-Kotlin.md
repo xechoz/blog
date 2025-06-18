@@ -157,3 +157,18 @@ ProfileModel, UserModel, PostModel, CommentModel 基本上每个 data 的逻辑 
 
 补充更多的 相关理论基础，例如 mongo db 的 懒加载优化：类似MongoDB的投影(projection)机制，减少初始数据量
 行业解决方案等，例如 Arrow.kt 怎么解决的深层级的 modify 数据
+
+https://redux.js.org/usage/structuring-reducers/normalizing-state-shape
+
+行业方案认知缺口
+
+行业方案认知缺口
+Redux归一化标准 https://redux.js.org/usage/structuring-reducers/normalizing-state-shape
+未引用Redux官方文档中的Normalizing State Shape
+
+Kotlin生态方案
+
+Arrow.kt的Optics系统
+Kotlinx.collections.immutable的持久化集合
+Android架构指南
+未关联Jetpack Compose的状态提升模式

@@ -153,22 +153,52 @@ ProfileModel, UserModel, PostModel, CommentModel 基本上每个 data 的逻辑 
 这样的好处是，我们的 数据 state 模型 还是对应 业务的功能的，从 data state 很容易看出来这个业务的核心数据，拆分的只是逻辑。
 而 核心 流程 还是在 UserProfileModel, 只是拆分了各自的子数据处理逻辑
 
-## todo
+推荐阅读 [Redux Normalization State Shape](https://redux.js.org/usage/structuring-reducers/normalizing-state-shape), 虽然 Android 开发用不到 Redux，但是 Redux 的很多思想，在 kotlin state flow 中都有应用, 特别是 复杂的状态管理方面，Redux 的很多思想是可以直接借鉴的。
 
-补充更多的 相关理论基础，例如 mongo db 的 懒加载优化：类似MongoDB的投影(projection)机制，减少初始数据量
-行业解决方案等，例如 Arrow.kt 怎么解决的深层级的 modify 数据
+例如 上面的使用 id flatten 数据层级，我在一开始只想到 mongo db 的 projection，直到写这个的时候查资料，才发现 Redux 已经实现了一整套方案。
 
-https://redux.js.org/usage/structuring-reducers/normalizing-state-shape
+## 关于 ArrowKt 的解决方案
 
-行业方案认知缺口
+Arrow 也有完整的解决方案。我没使用过 Arrow，不能深入评价。如果只从 入门使用者的角度看，我认为 Arrow 为了更符合函数式编程的 概念，例如 lens，引入了不必要的复杂度。而这些复杂度，在 OOP 里本来是不存在的。lens 更应该是到了特定的，明确需要的场景再使用。很多时候 lens 引入的复杂度 还不如 直接用 data class 的嵌套 copy.
 
-行业方案认知缺口
-Redux归一化标准 https://redux.js.org/usage/structuring-reducers/normalizing-state-shape
-未引用Redux官方文档中的Normalizing State Shape
+Funtional Program 在我看来，经常犯的错就是，过于注重形式，而不是解决问题。如果要用函数式的思想，就不能用面向对象的思想。使用 OOP 的是个异类，放火烧死他。《人月神话》里很早就说过了，不存在银弹。但是很多 FP 的使用者 却认为 只有 FP 是正确的，只能用 FP 去解决问题。
+但是我是实用派，我不关心是 FP，还是 OOP，我更关心的是，如何用最简洁高效的方式，解决问题。
 
-Kotlin生态方案
+例如官方给的读写 Data:
 
-Arrow.kt的Optics系统
-Kotlinx.collections.immutable的持久化集合
-Android架构指南
-未关联Jetpack Compose的状态提升模式
+```kotlin
+  val me = Person(
+    "Alejandro", 35, 
+    Address(Street("Kotlinstraat", 1), City("Hilversum", "Netherlands"))
+  )
+
+  Person.name.get(me) shouldBe "Alejandro"
+  
+  val meAfterBirthdayParty = Person.age.modify(me) { it + 1 }
+  Person.age.get(meAfterBirthdayParty) shouldBe 36
+
+  val newAddress = Address(Street("Kotlinplein", null), City("Amsterdam", "Netherlands"))
+  val meAfterMoving = Person.address.set(me, newAddress)
+  Person.address.get(meAfterMoving) shouldBe newAddress
+```
+
+读取 `name` 从 `me.name` 变成了 `Person.name.get(me)`， 为了更符合FP的定义，FP 经常干这种脱裤子放屁的事。
+
+## Kotlin DSL
+
+AI 提到 可以用 DSL, 这个还没用过:
+
+```kotlin
+user update {
+    name set "新名称"
+    address update {
+        street set "新街道"
+    }
+}
+```
+
+## 推荐&参考
+
+1. mongo db 的 懒加载优化：类似MongoDB的投影(projection)机制，减少初始数据量
+2. [Redux Normalization State Shape](https://redux.js.org/usage/structuring-reducers/normalizing-state-shape)
+3. [Arrow.kt Immutable Data](https://arrow-kt.io/learn/immutable-data/intro)

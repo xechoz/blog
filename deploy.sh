@@ -1,1 +1,1 @@
-hexo clean && hexo generate && hexo deploy
+npx hexo clean && npx hexo generate && npx hexo deploy

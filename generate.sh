@@ -1,1 +1,1 @@
-hexo clean && hexo generate
+npx hexo clean && npx hexo generate

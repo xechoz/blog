@@ -1,0 +1,27 @@
+# 极简配置：只保留文章列表 + 详情
+
+nav:
+  home: /
+
+tags_overview: false
+
+posts_overview:
+  show_all_posts: true
+  post_count: 5
+  sort_updated: false
+
+post:
+  show_updated: false
+
+# 隐藏 logo
+logo:
+  enabled: false
+
+# 社交链接全部清空
+social_links: []
+
+# 页面宽度稍微窄一点，更聚焦
+page_width: 42
+
+# 颜色方案
+colorscheme: dark

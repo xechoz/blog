@@ -1,0 +1,144 @@
+/* ==========================================
+   极简主题覆盖样式（不修改 cactus 源码）
+   ========================================== */
+
+/* ---- 全局 ---- */
+html {
+    border-top: none !important;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Noto Sans SC",
+        "PingFang SC", "Microsoft YaHei", sans-serif !important;
+}
+
+/* ---- 隐藏不需要的元素 ---- */
+#header,
+#about,
+#projects,
+#footer,
+article .meta,
+article header .author,
+.comments,
+.post-actions,
+nav#nav {
+    display: none !important;
+}
+
+/* ---- 页码宽度 ---- */
+.content {
+    max-width: 42rem !important;
+}
+
+/* ---- 主页：文章列表 ---- */
+#writing {
+    margin-top: 80px;
+}
+
+#writing .h1 {
+    display: none;
+    /* 隐藏 "Articles" 标题 */
+}
+
+.post-list {
+    padding: 0;
+    margin: 0;
+}
+
+.post-list .post-item {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding: 12px 0;
+    margin: 0;
+    border-bottom: 1px solid rgba(150, 150, 150, 0.12);
+    list-style: none;
+    transition: border-color 0.2s;
+}
+
+.post-list .post-item:hover {
+    border-color: rgba(150, 150, 150, 0.3);
+}
+
+.post-list .post-item .meta {
+    flex-shrink: 0;
+    min-width: 90px;
+    font-size: 13px;
+    color: #777;
+}
+
+.post-list .post-item a {
+    font-size: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.15s;
+}
+
+.post-list .post-item a:hover {
+    color: #2bbc8a;
+    background-image: none;
+}
+
+/* ---- 分页 ---- */
+.pagination {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+.pagination a {
+    color: #2bbc8a;
+    text-decoration: none;
+    margin: 0 12px;
+}
+
+.pagination .page-number {
+    color: #666;
+}
+
+/* ---- 文章详情页 ---- */
+article.post {
+    margin-top: 60px;
+}
+
+article.post header .posttitle {
+    text-align: center;
+    font-size: 1.7rem;
+    margin-bottom: 24px !important;
+}
+
+article.post .content.e-content {
+    font-size: 16px;
+    line-height: 1.85;
+    margin-top: 24px;
+}
+
+article.post .content.e-content h2:before {
+    content: none;
+    /* 去掉标题前的 # 号 */
+}
+
+/* ---- 响应式 ---- */
+@media (max-width: 480px) {
+    #writing {
+        margin-top: 40px;
+    }
+
+    .post-list .post-item {
+        flex-direction: column;
+        gap: 4px;
+        padding: 14px 0;
+    }
+
+    .post-list .post-item .meta {
+        min-width: auto;
+    }
+
+    article.post header .posttitle {
+        font-size: 1.3rem;
+    }
+
+    article.post .content.e-content {
+        font-size: 15px;
+    }
+}

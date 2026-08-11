@@ -15,7 +15,8 @@
 - **Android UI：** Compose + 传统 View 统一状态管理
 - **跨端开发：** 2 年 iOS 开发经验，双端网络库设计、iOS 路由组件、iOS 图片资源优化
 - **编程语言：** Kotlin / Java / 协程
-- **AI Coding：** 团队级 AI Skill 体系搭建、AI-Driven 代码架构约束、Copilot / Cursor / OpenCode 工作流集成、Vibe Coding 实践经验
+- **AI Coding：** 团队级 AI Skill 体系搭建、AI-Driven 代码架构约束、Copilot / Cursor / Hermes Agent 工作流集成、Vibe Coding 实践经验
+- **第三方 SDK 接入：** Google / Facebook / TikTok 登录、Google Play 内购 (IAP)、Pangle / AdMob / Meta 广告等主流海外 SDK 的统一接入与封装
 
 # 四、工作经历
 
@@ -27,6 +28,7 @@
 - 2020-2022 模块化与跨模块通信：服务发现组件、网络组件、直播间架构
 - 2023-2024 双端一致性网络库、iOS 路由组件、iOS 图片资源优化与包体积治理、多语言翻译流程自动化
 - 2024-2026 参与 AI-Assisted Development 基建（架构 Skill 建设、全链路工作流）、状态管理框架
+- 第三方 SDK 接入：Google/Facebook/TikTok 登录、Google Play 支付、Pangle/AdMob/Meta 广告 SDK 接入与统一封装
 
 ## 4.2 荔枝 FM / Android 开发工程师 / 2017 - 2018
 
@@ -74,7 +76,7 @@
 
 ## 5.5 团队 AI-Assisted Development 基建——架构 Skill 建设（2024-2026）
 
-**背景** 团队广泛使用 Copilot、Cursor、OpenCode 等工具，但 AI 生成代码缺乏架构约束，频繁偏离 MVVM、Service Manager、单向数据流等规范，Review 大量耗时在架构对齐上。团队决定共建 AI Coding 基础设施，各成员负责各自模块的 Skill 建设。
+**背景** 团队广泛使用 Copilot, Cursor 等工具，但 AI 生成代码缺乏架构约束，频繁偏离 MVVM、Service Manager、单向数据流等规范，Review 大量耗时在架构对齐上。团队决定共建 AI Coding 基础设施，各成员负责各自模块的 Skill 建设。
 
 **方案** 我负责将 HAGO 核心架构规范（MVVM、Service Manager、单向数据流状态管理、双端网络层等）转化为结构化 AI Skill，使 AI 生成代码原生遵循团队架构范式。同时推动 AI 全链路工作流落地：需求阶段 AI 输出开发计划 → 编码基于 Skill 生成合规代码 → Bug 分析接入 AI 辅助定位。
 
@@ -84,7 +86,7 @@
 
 **背景** 深入理解 AI 编码范式的能力边界，进行系统性 Vibe Coding 实践。
 
-**方案** 基于 OpenCode + 大模型 API，以 Vibe Coding 模式在 2 周内完成 4 款小游戏 Demo 的全流程开发。
+**方案** 基于 Hermes Agent + 大模型 API，以 Vibe Coding 模式在 2 周内完成 4 款小游戏 Demo 的全流程开发。
 
 **成果** 深入理解 Vibe Coding 的优势（快速原型搭建、大幅减少模板代码）与局限（复杂业务逻辑易出错、缺乏架构约束时代码不可持续），反向验证了 Skill 体系中架构约束的必要性，形成「Skill 为锚、AI 为桨」的团队 AI 编码策略。
 
@@ -104,7 +106,20 @@
 
 **成果** 安装包减小约 10MB，图片资源管理从编译期硬编码转为运行时按需拉取。
 
-# 六、工作内容
+
+## 5.9 海外第三方 SDK 统一接入体系（登录 / 支付 / 广告）
+
+**背景** HAGO 面向东南亚、中东、南美等海外市场，需接入 Google/Facebook/TikTok 登录、Google Play 内购以及 Pangle/AdMob/Meta 等多平台广告 SDK。各家 API 形态各异、版本迭代频繁，业务代码直接依赖 SDK 导致耦合度高，升级与隐私合规整改成本大。
+
+**方案** 设计统一 SDK 接入层屏蔽各家差异，业务侧通过统一接口接入、不感知底层 SDK 变化。
+
+- **登录：** Google / Facebook / TikTok 多渠道登录归一为统一登录态，渠道切换与扩展对业务透明。
+- **支付：** Google Play 内购 (IAP) 接入，统一订单与发货校验流程，保证支付链路一致性。
+- **广告：** Pangle / AdMob / Meta 多平台广告统一抽象，激励视频、插屏、Banner 回调归一，支持广告源兜底与降级策略。
+
+**成果** 业务方接入成本显著降低，登录与广告渠道可替换、可并行；第三方模块编译期按需引入、运行期按线上配置启停，灵活适配不同地区市场的需求。
+
+# 六、工作内容概括
 
 - **架构开发：** 主要负责 App 业务架构建设，涵盖 MVVM 基础架构、App 整体架构、首页架构设计等。
 - **业务模块开发：** 主要负责登录、直播间、App 首页、多语言翻译、屏幕适配等核心模块的功能开发，覆盖从需求分析、架构设计到落地交付的全流程。

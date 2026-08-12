@@ -5,9 +5,11 @@ import xml.etree.ElementTree as ET
 import zipfile, os, shutil, subprocess, sys
 
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
-MD_PATH = os.path.join(SRC_DIR, '_my_work.md')
-ODT_PATH = os.path.join(SRC_DIR, '_my_work.odt')
-TMP_DIR = '/tmp/odt_work'
+# Usage: python _generate_odt.py [basename]  (defaults to '_my_work')
+BASE = sys.argv[1] if len(sys.argv) > 1 else '_my_work'
+MD_PATH = os.path.join(SRC_DIR, f'{BASE}.md')
+ODT_PATH = os.path.join(SRC_DIR, f'{BASE}.odt')
+TMP_DIR = f'/tmp/odt_work_{BASE}'
 
 NAMESPACES = [
     ('', 'urn:oasis:names:tc:opendocument:xmlns:office:1.0'),

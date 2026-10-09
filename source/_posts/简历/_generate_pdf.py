@@ -19,12 +19,12 @@ MD_PATH = os.path.join(SRC_DIR, f"{BASE}.md")
 PDF_PATH = os.path.join(SRC_DIR, PDF_NAME)
 
 CSS = """
-@page { size: A4; margin: 13mm 15mm 15mm 15mm; }
-body { font-family: "Noto Sans CJK SC", sans-serif; font-size: 10.5pt;
-       color: #1f2328; line-height: 1.55; margin: 0; }
+@page { size: A4; margin: 10mm 12mm 12mm 12mm; }
+body { font-family: "Noto Sans CJK SC", sans-serif; font-size: 11pt;
+       color: #1f2328; line-height: 1.5; margin: 0; }
 h1 { font-size: 15pt; color: #007ACC; border-bottom: 1.8px solid #007ACC;
-     padding-bottom: 4px; margin: 13px 0 8px; }
-h2 { font-size: 12.5pt; color: #0e639c; margin: 11px 0 6px; }
+     padding-bottom: 4px; margin: 10px 0 6px; }
+h2 { font-size: 12.5pt; color: #0e639c; margin: 8px 0 5px; }
 blockquote { margin: 3px 0 8px; padding: 4px 10px; border-left: 3px solid #007ACC;
              background: #f0f7fc; color: #3d4a55; }
 table { border-collapse: collapse; width: 100%; margin: 6px 0; }
@@ -33,8 +33,8 @@ table.info { table-layout: auto; }
 table.info td:nth-child(1), table.info td:nth-child(3), table.info td:nth-child(4) { white-space: nowrap; width: 1%; }
 table.info td:nth-child(2) { width: auto; }
 ul { margin: 3px 0 8px; padding-left: 20px; }
-li { margin: 2.5px 0; }
-p { margin: 4px 0; }
+li { margin: 2px 0; }
+p { margin: 3px 0; }
 b { font-weight: 700; }
 """
 
